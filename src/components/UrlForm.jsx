@@ -98,11 +98,13 @@ const handleSubmit = async (e) => {
     </label>
 
     <input
+    autoFocus
       type="text"
   value={originalUrl}
 onChange={(e) => {
     setOriginalUrl(e.target.value)
     setError("")
+     setShortUrlData(null)
 }}
       placeholder="https://example.com/very-long-url"
       className="
@@ -201,11 +203,12 @@ onChange={(e) => setExpiresAt(e.target.value)}
     shadow-violet-900/40
     hover:shadow-violet-700/50
     hover:scale-[1.01]
-    disabled:opacity-50
+   disabled:opacity-50
 disabled:cursor-not-allowed
+disabled:scale-100
   "
 >
-  {loading ? "Creating..." : "Shorten URL 🚀"}
+ {loading ? "Generating Link..." : "Shorten URL 🚀"}
 </button>
 
 {
