@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 function Navbar() {
+    const location = useLocation()
   return (
     <nav className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
 
@@ -13,34 +14,42 @@ function Navbar() {
 
   <Link
     to="/"
-    className="
-      px-4
-      py-2
-      rounded-xl
-      border
-      border-zinc-800
-      hover:border-violet-500
-      transition
-      text-sm
-      text-white
-    "
+    className={`
+  px-4
+  py-2
+  rounded-xl
+  border
+  transition
+  text-sm
+  text-white
+
+  ${
+    location.pathname === "/"
+      ? "bg-violet-600 border-violet-500"
+      : "border-zinc-800 hover:border-violet-500"
+  }
+`}
   >
     Home
   </Link>
 
   <Link
     to="/analytics"
-    className="
-      px-4
-      py-2
-      rounded-xl
-      border
-      border-zinc-800
-      hover:border-violet-500
-      transition
-      text-sm
-      text-white
-    "
+ className={`
+  px-4
+  py-2
+  rounded-xl
+  border
+  transition
+  text-sm
+  text-white
+
+  ${
+    location.pathname === "/analytics"
+      ? "bg-violet-600 border-violet-500"
+      : "border-zinc-800 hover:border-violet-500"
+  }
+`}
   >
     Analytics
   </Link>
@@ -71,5 +80,6 @@ function Navbar() {
     </nav>
   )
 }
+
 
 export default Navbar
