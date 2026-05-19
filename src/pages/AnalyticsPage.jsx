@@ -1,6 +1,6 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
-
+import Navbar from "../components/Navbar"
 import { getUrlAnalytics }
 from "../api/shortUrlApi"
 
@@ -25,7 +25,7 @@ function AnalyticsPage() {
         toast.error(
           "Short code is required"
         )
-
+    
         return
       }
 
@@ -54,8 +54,10 @@ function AnalyticsPage() {
     }
 
   return (
+   
 
     <div className="min-h-screen bg-zinc-950 text-white">
+          <Navbar />
 
       <div className="max-w-5xl mx-auto px-4 py-10">
 
