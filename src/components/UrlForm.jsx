@@ -1,9 +1,45 @@
 import { useState } from "react"
+import { createShortUrl } from "../api/shortUrlApi"
 function UrlForm() {
 
 const [originalUrl, setOriginalUrl] = useState("")
 const [customAlias, setCustomAlias] = useState("")
 const [expiresAt, setExpiresAt] = useState("")
+const [loading, setLoading] = useState(false)
+const [shortUrlData, setShortUrlData] = useState(null)
+const [error, setError] = useState("")
+
+const handleSubmit = async () => {
+
+    try {
+
+        setLoading(true)
+        setError("")
+
+        const payload = {
+            originalUrl,
+            customAlias,
+            expiresAt
+        }
+
+        const response = await createShortUrl(payload)
+
+        setShortUrlData(response)
+
+        console.log(response)
+
+    } catch (err) {
+
+        setError(
+            err.response?.data?.message ||
+            "Something went wrong"
+        )
+
+    } finally {
+
+        setLoading(false)
+    }
+}
   return (
 <>
    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-24">
@@ -94,6 +130,8 @@ onChange={(e) => setExpiresAt(e.target.value)}
 
 </div>
 <button
+  onClick={handleSubmit}
+  disabled={loading}
   className="
     mt-8
     w-full
@@ -112,11 +150,57 @@ onChange={(e) => setExpiresAt(e.target.value)}
     shadow-violet-900/40
     hover:shadow-violet-700/50
     hover:scale-[1.01]
+    disabled:opacity-50
+disabled:cursor-not-allowed
   "
 >
-  Shorten URL 🚀
+  {loading ? "Creating..." : "Shorten URL 🚀"}
 </button>
-<p>{originalUrl}</p>
+
+{
+  shortUrlData && (
+
+    <div
+      className="
+        mt-6
+        bg-zinc-900
+        border
+        border-zinc-800
+        rounded-2xl
+        p-5
+      "
+    >
+
+      <p className="text-zinc-400 text-sm">
+        Short URL
+      </p>
+
+      <a
+        href={shortUrlData.shortUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="
+          text-violet-400
+          break-all
+          hover:underline
+        "
+      >
+        {shortUrlData.shortUrl}
+      </a>
+
+    </div>
+
+  )
+}
+{
+  error && (
+
+    <p className="text-red-400 mt-4">
+      {error}
+    </p>
+
+  )
+}
 </>
 
   )
