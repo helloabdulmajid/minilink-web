@@ -55,7 +55,7 @@ if (
         setLoading(true)
         setError("")
 
-       const payload = {
+ const payload = {
     originalUrl,
     customAlias: customAlias || null,
     expiresAt: expiresAt || null
@@ -94,7 +94,7 @@ setExpiresAt("")
     <input
       type="text"
   value={originalUrl}
-  onChange={(e) => {
+onChange={(e) => {
     setOriginalUrl(e.target.value)
     setError("")
 }}
