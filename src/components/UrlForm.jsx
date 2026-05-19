@@ -33,6 +33,7 @@ useEffect(() => {
 
 const handleCopy = async (text) => {
 
+
     try {
 
         await navigator.clipboard.writeText(text)
@@ -50,6 +51,18 @@ const handleCopy = async (text) => {
         console.log(err)
 
     }
+}
+    const clearHistory = () => {
+
+    setRecentLinks([])
+
+    localStorage.removeItem(
+        "recentLinks"
+    )
+
+    toast.success(
+        "History cleared"
+    )
 }
 
 const handleSubmit = async (e) => {
@@ -254,6 +267,7 @@ disabled:scale-100
 <RecentLinks
   links={recentLinks}
   handleCopy={handleCopy}
+  clearHistory={clearHistory}
 />
 
 </form>

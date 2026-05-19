@@ -1,6 +1,7 @@
 function RecentLinks({
   links,
-  handleCopy
+  handleCopy,
+  clearHistory
 }) {
 
   if (links.length === 0) {
@@ -11,15 +12,45 @@ function RecentLinks({
 
     <div className="mt-10">
 
-      <h2
-        className="
-          text-xl
-          font-semibold
-          mb-5
-        "
-      >
-        Recent Links
-      </h2>
+      <div
+  className="
+    flex
+    items-center
+    justify-between
+    mb-5
+    gap-4
+  "
+>
+
+  <h2
+    className="
+      text-xl
+      font-semibold
+    "
+  >
+    Recent Links
+  </h2>
+
+  <button
+    type="button"
+    onClick={clearHistory}
+    className="
+      text-sm
+      bg-red-500/10
+      border
+      border-red-500/20
+      hover:bg-red-500/20
+      text-red-400
+      px-4
+      py-2
+      rounded-xl
+      transition
+    "
+  >
+    Clear History 🗑️
+  </button>
+
+</div>
 
       <div className="space-y-4">
 
