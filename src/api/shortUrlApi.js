@@ -11,3 +11,13 @@ export const createShortUrl = async (payload) => {
 
     return response.data
 }
+export const getUrlAnalytics = async (
+    shortCode
+) => {
+
+    const response = await axios.get(
+       `${API_BASE_URL}/${shortCode}/analytics`
+    )
+
+    return response.data
+}
