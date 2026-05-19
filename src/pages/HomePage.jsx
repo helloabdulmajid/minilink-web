@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar"
+import UrlForm from "../components/UrlForm"
 
 function HomePage() {
   return (
@@ -62,6 +63,7 @@ function HomePage() {
             with analytics, expiration support,
             and custom aliases.
           </p>
+          <UrlForm />
 
         </div>
 
