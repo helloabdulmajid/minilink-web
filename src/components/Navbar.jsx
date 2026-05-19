@@ -8,21 +8,24 @@ function Navbar() {
           MiniLink
         </h1>
 
-        <button
-          className="
-            bg-violet-600
-            hover:bg-violet-500
-            transition
-            px-5
-            py-2
-            rounded-xl
-            text-sm
-            font-medium
-            text-white
-          "
-        >
-          GitHub
-        </button>
+      <a
+  href="https://github.com/helloabdulmajid/minilink-web"
+  target="_blank"
+  rel="noreferrer"
+  className="
+    bg-violet-600
+    hover:bg-violet-500
+    transition
+    px-5
+    py-2
+    rounded-xl
+    text-sm
+    font-medium
+    text-white
+  "
+>
+  GitHub
+</a>
 
       </div>
 

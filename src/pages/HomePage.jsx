@@ -7,7 +7,7 @@ function HomePage() {
 
       <Navbar />
 
-<section className="relative max-w-6xl mx-auto px-4 py-24">
+<section className="relative max-w-6xl mx-auto px-4 py-8">
         <div
   className="
     absolute
@@ -33,29 +33,45 @@ function HomePage() {
 
         <div className="text-center">
 
-          <h1
-            className="
-              text-5xl
-              md:text-7xl
-              font-extrabold
-              leading-tight
-            "
-          >
-            Shorten Long Links,
-            <br />
+         <h1
+  className="
+    text-5xl
+    md:text-7xl
+    font-extrabold
+    leading-tight
+  "
+>
+  Shorten Long Links,
+  <br />
 
-            <span className="text-violet-500">
-              Share Everywhere 🚀
-            </span>
+  <div className="flex items-center justify-center gap-4 flex-wrap">
 
-          </h1>
+    <span
+      className="
+        bg-gradient-to-r
+        from-violet-500
+        to-purple-400
+        bg-clip-text
+        text-transparent
+      "
+    >
+      Share Everywhere
+    </span>
+
+    <span className="text-6xl">
+      🚀
+    </span>
+
+  </div>
+
+</h1>
 
           <p
             className="
               text-zinc-400
               text-lg
               mt-6
-              max-w-2xl
+              max-w-3xl
               mx-auto
             "
           >

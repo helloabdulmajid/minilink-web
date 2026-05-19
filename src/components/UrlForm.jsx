@@ -1,89 +1,112 @@
 function UrlForm() {
   return (
+<>
+   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-24">
 
-    <div
+  <div className="md:col-span-2 ">
+    <label className="block text-sm text-zinc-300 mb-2">
+      Long URL
+    </label>
+
+    <input
+      type="text"
+      placeholder="https://example.com/very-long-url"
       className="
-        mt-16
-        bg-zinc-900/60
+        w-full
+        bg-zinc-950
         border
         border-zinc-800
-        backdrop-blur-xl
-        rounded-3xl
-        p-6
-        md:p-8
-        shadow-2xl
+        rounded-2xl
+        px-4
+        py-3
+        outline-none
+        focus:border-violet-500
+        transition
       "
-    >
+    />
+  </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+  <div>
+    <label className="block text-sm text-zinc-300 mb-2">
+      Custom Alias
+      <span className="text-zinc-600">
+        {" "} (optional)
+      </span>
+    </label>
 
-        <input
-          type="text"
-          placeholder="Enter your long URL..."
-          className="
-            md:col-span-2
-            bg-zinc-950
-            border
-            border-zinc-800
-            rounded-2xl
-            px-4
-            py-3
-            outline-none
-            focus:border-violet-500
-            transition
-          "
-        />
+    <input
+      type="text"
+      placeholder="github"
+      className="
+        w-full
+        bg-zinc-950
+        border
+        border-zinc-800
+        rounded-2xl
+        px-4
+        py-3
+        outline-none
+        focus:border-violet-500
+        transition
+      "
+    />
+  </div>
 
-        <input
-          type="text"
-          placeholder="Custom alias (optional)"
-          className="
-            bg-zinc-950
-            border
-            border-zinc-800
-            rounded-2xl
-            px-4
-            py-3
-            outline-none
-            focus:border-violet-500
-            transition
-          "
-        />
+  <div>
+    <label className="block text-sm text-zinc-300 mb-2">
+      Expiration
+      <span className="text-zinc-600">
+        {" "} (optional)
+      </span>
+    </label>
 
-        <input
-          type="datetime-local"
-          className="
-            bg-zinc-950
-            border
-            border-zinc-800
-            rounded-2xl
-            px-4
-            py-3
-            outline-none
-            focus:border-violet-500
-            transition
-          "
-        />
+    <input
+      type="datetime-local"
+      className="
+        w-full
+        bg-zinc-950
+        border
+        border-zinc-800
+        rounded-2xl
+        px-4
+        py-3
+        outline-none
+        focus:border-violet-500
+        transition
+      "
+    />
 
-      </div>
+    <p className="text-xs text-zinc-500 mt-2">
+      Leave empty for permanent link
+    </p>
+  </div>
 
-      <button
-        className="
-          mt-6
-          w-full
-          bg-violet-600
-          hover:bg-violet-500
-          transition
-          py-4
-          rounded-2xl
-          font-semibold
-          text-lg
-        "
-      >
-        Shorten URL 🚀
-      </button>
+</div>
+<button
+  className="
+    mt-8
+    w-full
+    bg-gradient-to-r
+    from-violet-600
+    to-purple-500
+    hover:from-violet-500
+    hover:to-purple-400
+    transition-all
+    duration-300
+    py-4
+    rounded-2xl
+    font-semibold
+    text-lg
+    shadow-lg
+    shadow-violet-900/40
+    hover:shadow-violet-700/50
+    hover:scale-[1.01]
+  "
+>
+  Shorten URL 🚀
+</button>
+</>
 
-    </div>
   )
 }
 
