@@ -1,4 +1,9 @@
+import { useState } from "react"
 function UrlForm() {
+
+const [originalUrl, setOriginalUrl] = useState("")
+const [customAlias, setCustomAlias] = useState("")
+const [expiresAt, setExpiresAt] = useState("")
   return (
 <>
    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-24">
@@ -10,6 +15,8 @@ function UrlForm() {
 
     <input
       type="text"
+  value={originalUrl}
+  onChange={(e) => setOriginalUrl(e.target.value)}
       placeholder="https://example.com/very-long-url"
       className="
         w-full
@@ -36,6 +43,8 @@ function UrlForm() {
 
     <input
       type="text"
+      value={customAlias}
+onChange={(e) => setCustomAlias(e.target.value)}
       placeholder="github"
       className="
         w-full
@@ -62,6 +71,8 @@ function UrlForm() {
 
     <input
       type="datetime-local"
+      value={expiresAt}
+onChange={(e) => setExpiresAt(e.target.value)}
       className="
         w-full
         bg-zinc-950
@@ -105,6 +116,7 @@ function UrlForm() {
 >
   Shorten URL 🚀
 </button>
+<p>{originalUrl}</p>
 </>
 
   )
