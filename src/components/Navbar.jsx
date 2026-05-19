@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 function Navbar() {
   return (
     <nav className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
@@ -8,24 +9,62 @@ function Navbar() {
           MiniLink
         </h1>
 
-      <a
-  href="https://github.com/helloabdulmajid/minilink-web"
-  target="_blank"
-  rel="noreferrer"
-  className="
-    bg-violet-600
-    hover:bg-violet-500
-    transition
-    px-5
-    py-2
-    rounded-xl
-    text-sm
-    font-medium
-    text-white
-  "
->
-  GitHub
-</a>
+  <div className="flex items-center gap-3">
+
+  <Link
+    to="/"
+    className="
+      px-4
+      py-2
+      rounded-xl
+      border
+      border-zinc-800
+      hover:border-violet-500
+      transition
+      text-sm
+      text-white
+    "
+  >
+    Home
+  </Link>
+
+  <Link
+    to="/analytics"
+    className="
+      px-4
+      py-2
+      rounded-xl
+      border
+      border-zinc-800
+      hover:border-violet-500
+      transition
+      text-sm
+      text-white
+    "
+  >
+    Analytics
+  </Link>
+
+  <a
+    href="https://github.com/helloabdulmajid/minilink-web"
+    target="_blank"
+    rel="noreferrer"
+    className="
+      bg-violet-600
+      hover:bg-violet-500
+      transition
+      px-5
+      py-2
+      rounded-xl
+      text-sm
+      font-medium
+      text-white
+    "
+  >
+    GitHub
+  </a>
+
+</div>
 
       </div>
 
