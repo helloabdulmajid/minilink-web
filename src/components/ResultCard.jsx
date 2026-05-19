@@ -72,7 +72,7 @@ function ResultCard({
 
             <button
               type="button"
-              onClick={handleCopy}
+             onClick={() => handleCopy(shortUrlData.shortUrl)}
               className="
                 bg-violet-600
                 hover:bg-violet-500

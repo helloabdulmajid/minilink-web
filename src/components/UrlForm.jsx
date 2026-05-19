@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createShortUrl } from "../api/shortUrlApi"
 import ResultCard from "./ResultCard"
 import toast from "react-hot-toast"
+import RecentLinks from "./RecentLinks"
 function UrlForm() {
 
 const [originalUrl, setOriginalUrl] = useState("")
@@ -9,19 +10,35 @@ const [customAlias, setCustomAlias] = useState("")
 const [expiresAt, setExpiresAt] = useState("")
 const [loading, setLoading] = useState(false)
 const [shortUrlData, setShortUrlData] = useState(null)
-const [error, setError] = useState("")
 
 const [copied, setCopied] = useState(false)
+const [recentLinks, setRecentLinks] = useState(() => {
 
-const handleCopy = async () => {
+    const storedLinks =
+        localStorage.getItem("recentLinks")
+
+    return storedLinks
+        ? JSON.parse(storedLinks)
+        : []
+
+})
+useEffect(() => {
+
+    localStorage.setItem(
+        "recentLinks",
+        JSON.stringify(recentLinks)
+    )
+
+}, [recentLinks])
+
+const handleCopy = async (text) => {
 
     try {
 
-        await navigator.clipboard.writeText(
-            shortUrlData.shortUrl
-        )
+        await navigator.clipboard.writeText(text)
 
         setCopied(true)
+
         toast.success("Copied to clipboard")
 
         setTimeout(() => {
@@ -65,7 +82,6 @@ if (
     try {
 
         setLoading(true)
-        setError("")
 
         const payload = {
             originalUrl,
@@ -77,6 +93,10 @@ if (
         toast.success("Short URL created successfully")
 
         setShortUrlData(response)
+        setRecentLinks((prev) => [
+    response,
+    ...prev
+])
 
         setOriginalUrl("")
         setCustomAlias("")
@@ -113,7 +133,6 @@ if (
   value={originalUrl}
 onChange={(e) => {
     setOriginalUrl(e.target.value)
-    setError("")
      setShortUrlData(null)
 }}
       placeholder="https://example.com/very-long-url"
@@ -232,6 +251,10 @@ disabled:scale-100
 
   )
 }
+<RecentLinks
+  links={recentLinks}
+  handleCopy={handleCopy}
+/>
 
 </form>
 
