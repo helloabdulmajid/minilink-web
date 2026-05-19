@@ -34,16 +34,32 @@ const handleCopy = async () => {
 
 const handleSubmit = async () => {
 
+if (!originalUrl.trim()) {
+
+    setShortUrlData(null)
+    setError("URL is required")
+    return
+}
+
+if (
+    !originalUrl.startsWith("http://") &&
+    !originalUrl.startsWith("https://")
+) {
+
+    setShortUrlData(null)
+    setError("URL must start with http:// or https://")
+    return
+}
     try {
 
         setLoading(true)
         setError("")
 
-        const payload = {
-            originalUrl,
-            customAlias,
-            expiresAt
-        }
+       const payload = {
+    originalUrl,
+    customAlias: customAlias || null,
+    expiresAt: expiresAt || null
+}
 
         const response = await createShortUrl(payload)
 
@@ -68,7 +84,7 @@ setExpiresAt("")
 }
   return (
 <>
-   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-24">
+   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-16 md:mt-24">
 
   <div className="md:col-span-2 ">
     <label className="block text-sm text-zinc-300 mb-2">
@@ -78,7 +94,10 @@ setExpiresAt("")
     <input
       type="text"
   value={originalUrl}
-  onChange={(e) => setOriginalUrl(e.target.value)}
+  onChange={(e) => {
+    setOriginalUrl(e.target.value)
+    setError("")
+}}
       placeholder="https://example.com/very-long-url"
       className="
         w-full
