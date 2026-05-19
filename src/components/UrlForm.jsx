@@ -9,6 +9,29 @@ const [loading, setLoading] = useState(false)
 const [shortUrlData, setShortUrlData] = useState(null)
 const [error, setError] = useState("")
 
+const [copied, setCopied] = useState(false)
+
+const handleCopy = async () => {
+
+    try {
+
+        await navigator.clipboard.writeText(
+            shortUrlData.shortUrl
+        )
+
+        setCopied(true)
+
+        setTimeout(() => {
+            setCopied(false)
+        }, 2000)
+
+    } catch (err) {
+
+        console.log(err)
+
+    }
+}
+
 const handleSubmit = async () => {
 
     try {
@@ -175,18 +198,39 @@ disabled:cursor-not-allowed
         Short URL
       </p>
 
-      <a
-        href={shortUrlData.shortUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="
-          text-violet-400
-          break-all
-          hover:underline
-        "
-      >
-        {shortUrlData.shortUrl}
-      </a>
+     <div className="flex flex-col md:flex-row gap-4 items-center justify-between mt-2">
+
+  <a
+    href={shortUrlData.shortUrl}
+    target="_blank"
+    rel="noreferrer"
+    className="
+      text-violet-400
+      break-all
+      hover:underline
+    "
+  >
+    {shortUrlData.shortUrl}
+  </a>
+
+  <button
+    onClick={handleCopy}
+    className="
+      bg-violet-600
+      hover:bg-violet-500
+      transition
+      px-4
+      py-2
+      rounded-xl
+      text-sm
+      font-medium
+      whitespace-nowrap
+    "
+  >
+    {copied ? "Copied ✅" : "Copy 📋"}
+  </button>
+
+</div>
 
     </div>
 
