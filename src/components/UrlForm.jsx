@@ -250,7 +250,35 @@ disabled:cursor-not-allowed
 disabled:scale-100
   "
 >
- {loading ? "Generating Link..." : "Shorten URL 🚀"}
+{
+  loading ? (
+
+    <div className="flex items-center justify-center gap-3">
+
+      <div
+        className="
+          w-5
+          h-5
+          border-2
+          border-white/30
+          border-t-white
+          rounded-full
+          animate-spin
+        "
+      />
+
+      <span>
+        Generating Link...
+      </span>
+
+    </div>
+
+  ) : (
+
+    "Shorten URL 🚀"
+
+  )
+}
 </button>
 
 {

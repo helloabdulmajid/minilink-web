@@ -147,12 +147,40 @@ function AnalyticsPage() {
           </button>
 
         </form>
-        {
+{
+  !analytics && (
+
+    <div
+      className="
+        mt-10
+        bg-zinc-900/60
+        border
+        border-zinc-800
+        rounded-3xl
+        p-10
+        text-center
+      "
+    >
+
+      <h2 className="text-2xl font-bold mb-3">
+        Analytics Result 📈
+      </h2>
+
+      <p className="text-zinc-500">
+        Search a short code to view analytics
+      </p>
+
+    </div>
+
+  )
+}
+
+{
   analytics && (
 
     <div
       className="
-        mt-8
+        mt-10
         bg-zinc-900
         border
         border-zinc-800
@@ -161,13 +189,7 @@ function AnalyticsPage() {
       "
     >
 
-      <h2
-        className="
-          text-2xl
-          font-bold
-          mb-6
-        "
-      >
+      <h2 className="text-3xl font-bold mb-6">
         Analytics Result 📈
       </h2>
 
@@ -176,98 +198,60 @@ function AnalyticsPage() {
           grid
           grid-cols-1
           md:grid-cols-2
-          gap-4
+          gap-5
         "
       >
 
-        <div
-          className="
-            bg-zinc-950
-            rounded-2xl
-            p-5
-          "
-        >
-          <p className="text-zinc-500 text-sm">
+        <div className="bg-zinc-950 rounded-2xl p-5">
+
+          <p className="text-zinc-500 mb-2">
             Original URL
           </p>
 
-          <p
-            className="
-              mt-2
-              break-all
-            "
-          >
+          <p className="break-all">
             {analytics.originalUrl}
           </p>
+
         </div>
 
-        <div
-          className="
-            bg-zinc-950
-            rounded-2xl
-            p-5
-          "
-        >
-          <p className="text-zinc-500 text-sm">
+        <div className="bg-zinc-950 rounded-2xl p-5">
+
+          <p className="text-zinc-500 mb-2">
             Short URL
           </p>
 
-        <p
-  className="
-    mt-2
-    text-violet-400
-    break-all
-  "
->
+          <p className="text-violet-400 break-all">
+            http://localhost:8080/{analytics.shortCode}
+          </p>
 
-  {`http://localhost:8080/${analytics.shortCode}`}
-  
-  
-</p>
         </div>
 
-        <div
-          className="
-            bg-zinc-950
-            rounded-2xl
-            p-5
-          "
-        >
-          <p className="text-zinc-500 text-sm">
+        <div className="bg-zinc-950 rounded-2xl p-5">
+
+          <p className="text-zinc-500 mb-2">
             Click Count
           </p>
 
-          <p
-            className="
-              mt-2
-              text-3xl
-              font-bold
-            "
-          >
+          <p className="text-4xl font-bold">
             {analytics.clickCount}
           </p>
+
         </div>
 
-        <div
-          className="
-            bg-zinc-950
-            rounded-2xl
-            p-5
-          "
-        >
-          <p className="text-zinc-500 text-sm">
+        <div className="bg-zinc-950 rounded-2xl p-5">
+
+          <p className="text-zinc-500 mb-2">
             Expiration
           </p>
 
-          <p className="mt-2">
-
+          <p>
             {
               analytics.expiresAt
                 ? analytics.expiresAt
                 : "Permanent Link"
             }
-
           </p>
+
         </div>
 
       </div>

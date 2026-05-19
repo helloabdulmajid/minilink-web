@@ -5,8 +5,33 @@ function RecentLinks({
 }) {
 
   if (links.length === 0) {
-    return null
-  }
+
+  return (
+
+    <div
+      className="
+        mt-12
+        bg-zinc-900/60
+        border
+        border-zinc-800
+        rounded-3xl
+        p-10
+        text-center
+      "
+    >
+
+      <h2 className="text-2xl font-bold mb-3">
+        Recent Links
+      </h2>
+
+      <p className="text-zinc-500">
+        No recent links yet 🚀
+      </p>
+
+    </div>
+
+  )
+}
 
   return (
 
