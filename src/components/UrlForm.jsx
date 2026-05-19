@@ -48,6 +48,9 @@ const handleSubmit = async () => {
         const response = await createShortUrl(payload)
 
         setShortUrlData(response)
+        setOriginalUrl("")
+      setCustomAlias("")
+setExpiresAt("")
 
         console.log(response)
 
