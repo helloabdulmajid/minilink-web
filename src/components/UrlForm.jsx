@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { createShortUrl } from "../api/shortUrlApi"
+import ResultCard from "./ResultCard"
+import toast from "react-hot-toast"
 function UrlForm() {
 
 const [originalUrl, setOriginalUrl] = useState("")
@@ -20,6 +22,7 @@ const handleCopy = async () => {
         )
 
         setCopied(true)
+        toast.success("Copied to clipboard")
 
         setTimeout(() => {
             setCopied(false)
@@ -36,22 +39,28 @@ const handleSubmit = async (e) => {
 
     e.preventDefault()
 
-    if (!originalUrl.trim()) {
+if (!originalUrl.trim()) {
 
-        setShortUrlData(null)
-        setError("URL is required")
-        return
-    }
+    setShortUrlData(null)
 
-    if (
-        !originalUrl.startsWith("http://") &&
-        !originalUrl.startsWith("https://")
-    ) {
+    toast.error("URL is required")
 
-        setShortUrlData(null)
-        setError("URL must start with http:// or https://")
-        return
-    }
+    return
+}
+
+if (
+    !originalUrl.startsWith("http://") &&
+    !originalUrl.startsWith("https://")
+) {
+
+    setShortUrlData(null)
+
+    toast.error(
+        "URL must start with http:// or https://"
+    )
+
+    return
+}
 
     try {
 
@@ -65,6 +74,7 @@ const handleSubmit = async (e) => {
         }
 
         const response = await createShortUrl(payload)
+        toast.success("Short URL created successfully")
 
         setShortUrlData(response)
 
@@ -76,10 +86,10 @@ const handleSubmit = async (e) => {
 
     } catch (err) {
 
-        setError(
-            err.response?.data?.message ||
-            "Something went wrong"
-        )
+  toast.error(
+    err.response?.data?.message ||
+    "Something went wrong"
+)
 
     } finally {
 
@@ -214,69 +224,15 @@ disabled:scale-100
 {
   shortUrlData && (
 
-    <div
-      className="
-        mt-6
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-2xl
-        p-5
-      "
-    >
-
-      <p className="text-zinc-400 text-sm">
-        Short URL
-      </p>
-
-     <div className="flex flex-col md:flex-row gap-4 items-center justify-between mt-2">
-
-  <a
-    href={shortUrlData.shortUrl}
-    target="_blank"
-    rel="noreferrer"
-    className="
-      text-violet-400
-      break-all
-      hover:underline
-    "
-  >
-    {shortUrlData.shortUrl}
-  </a>
-
-  <button
-  type="button"
-    onClick={handleCopy}
-    className="
-      bg-violet-600
-      hover:bg-violet-500
-      transition
-      px-4
-      py-2
-      rounded-xl
-      text-sm
-      font-medium
-      whitespace-nowrap
-    "
-  >
-    {copied ? "Copied ✅" : "Copy 📋"}
-  </button>
-
-</div>
-
-    </div>
+    <ResultCard
+      shortUrlData={shortUrlData}
+      copied={copied}
+      handleCopy={handleCopy}
+    />
 
   )
 }
-{
-  error && (
 
-    <p className="text-red-400 mt-4">
-      {error}
-    </p>
-
-  )
-}
 </form>
 
   )
