@@ -55,20 +55,20 @@ function ResultCard({
             "
           >
 
-            <a
-              href={shortUrlData.shortUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="
-                text-violet-400
-                hover:text-violet-300
-                break-all
-                font-medium
-                hover:underline
-              "
-            >
-              {shortUrlData.shortUrl}
-            </a>
+           <a
+  href={shortUrlData.shortUrl}
+  target="_blank"
+  rel="noreferrer"
+  className="
+    text-violet-400
+    break-all
+    hover:text-violet-300
+    underline
+    transition
+  "
+>
+  {shortUrlData.shortUrl}
+</a>
 
             <button
               type="button"

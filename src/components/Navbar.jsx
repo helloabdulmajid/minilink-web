@@ -89,8 +89,11 @@ function Navbar() {
     target="_blank"
     rel="noreferrer"
     className="
-      bg-violet-600
-      hover:bg-violet-500
+      bg-gradient-to-r
+from-fuchsia-600
+to-violet-600
+hover:from-fuchsia-500
+hover:to-violet-500
       transition
       px-5
       py-2

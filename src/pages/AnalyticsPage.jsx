@@ -220,9 +220,20 @@ function AnalyticsPage() {
             Short URL
           </p>
 
-          <p className="text-violet-400 break-all">
-            http://localhost:8080/{analytics.shortCode}
-          </p>
+          <a
+  href={`http://localhost:8080/${analytics.shortCode}`}
+  target="_blank"
+  rel="noreferrer"
+  className="
+    text-violet-400
+    break-all
+    hover:text-violet-300
+    underline
+    transition
+  "
+>
+  http://localhost:8080/{analytics.shortCode}
+</a>
 
         </div>
 
