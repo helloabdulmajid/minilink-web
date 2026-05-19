@@ -1,6 +1,7 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import { getUrlAnalytics }
 from "../api/shortUrlApi"
 
@@ -277,7 +278,7 @@ function AnalyticsPage() {
 }
 
       </div>
-
+<Footer />
     </div>
   )
 }

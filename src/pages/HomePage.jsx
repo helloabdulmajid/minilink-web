@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar"
 import UrlForm from "../components/UrlForm"
+import Footer from "../components/Footer"
 
 function HomePage() {
   return (
@@ -84,6 +85,7 @@ function HomePage() {
         </div>
 
       </section>
+      <Footer />
 
     </div>
   )
