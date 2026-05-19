@@ -221,7 +221,7 @@ function AnalyticsPage() {
           </p>
 
           <a
-  href={`http://localhost:8080/${analytics.shortCode}`}
+  href={`https://minilink-twtn.onrender.com/${analytics.shortCode}`}
   target="_blank"
   rel="noreferrer"
   className="
@@ -232,7 +232,7 @@ function AnalyticsPage() {
     transition
   "
 >
-  http://localhost:8080/{analytics.shortCode}
+  https://minilink-twtn.onrender.com/{analytics.shortCode}
 </a>
 
         </div>
