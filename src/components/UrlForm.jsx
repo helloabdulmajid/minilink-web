@@ -32,41 +32,45 @@ const handleCopy = async () => {
     }
 }
 
-const handleSubmit = async () => {
+const handleSubmit = async (e) => {
 
-if (!originalUrl.trim()) {
+    e.preventDefault()
 
-    setShortUrlData(null)
-    setError("URL is required")
-    return
-}
+    if (!originalUrl.trim()) {
 
-if (
-    !originalUrl.startsWith("http://") &&
-    !originalUrl.startsWith("https://")
-) {
+        setShortUrlData(null)
+        setError("URL is required")
+        return
+    }
 
-    setShortUrlData(null)
-    setError("URL must start with http:// or https://")
-    return
-}
+    if (
+        !originalUrl.startsWith("http://") &&
+        !originalUrl.startsWith("https://")
+    ) {
+
+        setShortUrlData(null)
+        setError("URL must start with http:// or https://")
+        return
+    }
+
     try {
 
         setLoading(true)
         setError("")
 
- const payload = {
-    originalUrl,
-    customAlias: customAlias || null,
-    expiresAt: expiresAt || null
-}
+        const payload = {
+            originalUrl,
+            customAlias: customAlias || null,
+            expiresAt: expiresAt || null
+        }
 
         const response = await createShortUrl(payload)
 
         setShortUrlData(response)
+
         setOriginalUrl("")
-      setCustomAlias("")
-setExpiresAt("")
+        setCustomAlias("")
+        setExpiresAt("")
 
         console.log(response)
 
@@ -83,7 +87,9 @@ setExpiresAt("")
     }
 }
   return (
-<>
+<form
+  onSubmit={handleSubmit}
+>
    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-16 md:mt-24">
 
   <div className="md:col-span-2 ">
@@ -175,7 +181,7 @@ onChange={(e) => setExpiresAt(e.target.value)}
 
 </div>
 <button
-  onClick={handleSubmit}
+  type="submit"
   disabled={loading}
   className="
     mt-8
@@ -236,6 +242,7 @@ disabled:cursor-not-allowed
   </a>
 
   <button
+  type="button"
     onClick={handleCopy}
     className="
       bg-violet-600
@@ -267,7 +274,7 @@ disabled:cursor-not-allowed
 
   )
 }
-</>
+</form>
 
   )
 }
