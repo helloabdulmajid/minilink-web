@@ -256,11 +256,16 @@ function AnalyticsPage() {
           </p>
 
           <p>
+          
             {
-              analytics.expiresAt
-                ? analytics.expiresAt
-                : "Permanent Link"
-            }
+    analytics.expiresAt
+      ? new Date(analytics.expiresAt)
+          .toLocaleString("en-IN", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          })
+      : "Permanent Link"
+  }
           </p>
 
         </div>

@@ -137,11 +137,15 @@ function ResultCard({
             </p>
 
             <p className="text-sm font-medium">
-              {
-                shortUrlData.expiresAt
-                  ? shortUrlData.expiresAt
-                  : "Permanent Link"
-              }
+            {
+    shortUrlData.expiresAt
+      ? new Date(shortUrlData.expiresAt)
+          .toLocaleString("en-IN", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          })
+      : "Permanent Link"
+  }
             </p>
 
           </div>
