@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { createShortUrl } from "../api/shortUrlApi"
 import ResultCard from "./ResultCard"
 import toast from "react-hot-toast"
@@ -7,7 +9,7 @@ function UrlForm() {
 
 const [originalUrl, setOriginalUrl] = useState("")
 const [customAlias, setCustomAlias] = useState("")
-const [expiresAt, setExpiresAt] = useState("")
+const [expiresAt, setExpiresAt] = useState(null)
 const [loading, setLoading] = useState(false)
 const [shortUrlData, setShortUrlData] = useState(null)
 
@@ -99,7 +101,9 @@ if (
         const payload = {
             originalUrl,
             customAlias: customAlias || null,
-            expiresAt: expiresAt || null
+            expiresAt: expiresAt
+  ? expiresAt.toISOString()
+  : null,
         }
 
         const response = await createShortUrl(payload)
@@ -113,7 +117,7 @@ if (
 
         setOriginalUrl("")
         setCustomAlias("")
-        setExpiresAt("")
+        setExpiresAt(null)
 
         console.log(response)
 
@@ -192,36 +196,40 @@ onChange={(e) => setCustomAlias(e.target.value)}
     />
   </div>
 
-  <div>
-    <label className="block text-sm text-zinc-300 mb-2">
-      Expiration
-      <span className="text-zinc-600">
-        {" "} (optional)
-      </span>
-    </label>
+ <div>
+  <label className="block text-sm text-zinc-300 mb-2">
+    Expiration
+    <span className="text-zinc-600">
+      {" "} (optional)
+    </span>
+  </label>
 
-    <input
-      type="datetime-local"
-      value={expiresAt}
-onChange={(e) => setExpiresAt(e.target.value)}
-      className="
-        w-full
-        bg-zinc-950
-        border
-        border-zinc-800
-        rounded-2xl
-        px-4
-        py-3
-        outline-none
-        focus:border-violet-500
-        transition
-      "
-    />
+  <DatePicker
+    selected={expiresAt}
+    onChange={(date) => setExpiresAt(date)}
+    showTimeSelect
+    minDate={new Date()}
+    dateFormat="Pp"
+    placeholderText="Select expiration date & time"
+    className="
+      w-full
+      bg-zinc-950
+      border
+      border-zinc-800
+      rounded-2xl
+      px-4
+      py-3
+      outline-none
+      focus:border-violet-500
+      transition
+      text-white
+    "
+  />
 
-    <p className="text-xs text-zinc-500 mt-2">
-      Leave empty for permanent link
-    </p>
-  </div>
+  <p className="text-xs text-zinc-500 mt-2">
+    Leave empty for permanent link
+  </p>
+</div>
 
 </div>
 <button
