@@ -44,51 +44,54 @@ function ResultCard({
             Short URL
           </p>
 
-          <div
-            className="
-              flex
-              flex-col
-              md:flex-row
-              md:items-center
-              gap-4
-              justify-between
-            "
-          >
-
-           <a
-  href={shortUrlData.shortUrl}
-  target="_blank"
-  rel="noreferrer"
+<div
   className="
-    text-violet-400
-    break-all
-    hover:text-violet-300
-    underline
-    transition
+    flex
+    flex-col
+    items-center
+    gap-4
+    text-center
+    md:flex-row
+    md:justify-center
   "
 >
-  {shortUrlData.shortUrl}
-</a>
 
-            <button
-              type="button"
-             onClick={() => handleCopy(shortUrlData.shortUrl)}
-              className="
-                bg-violet-600
-                hover:bg-violet-500
-                transition
-                px-4
-                py-2
-                rounded-xl
-                text-sm
-                font-medium
-                whitespace-nowrap
-              "
-            >
-              {copied ? "Copied ✅" : "Copy 📋"}
-            </button>
+  <a
+    href={shortUrlData.shortUrl}
+    target="_blank"
+    rel="noreferrer"
+    className="
+      text-violet-400
+      break-all
+      hover:text-violet-300
+      underline
+      transition
+      w-full
+      md:w-auto
+    "
+  >
+    {shortUrlData.shortUrl}
+  </a>
 
-          </div>
+  <button
+    type="button"
+    onClick={() => handleCopy(shortUrlData.shortUrl)}
+    className="
+      bg-violet-600
+      hover:bg-violet-500
+      transition
+      px-4
+      py-2
+      rounded-xl
+      text-sm
+      font-medium
+      whitespace-nowrap
+    "
+  >
+    {copied ? "Copied ✅" : "Copy 📋"}
+  </button>
+
+</div>
 
         </div>
 
@@ -103,13 +106,14 @@ function ResultCard({
         >
 
           <div
-            className="
-              bg-zinc-950
-              border
-              border-zinc-800
-              rounded-2xl
-              p-4
-            "
+          className="
+  bg-zinc-950
+  border
+  border-zinc-800
+  rounded-2xl
+  p-4
+  text-center
+"
           >
 
             <p className="text-zinc-500 text-xs mb-1">
@@ -123,13 +127,14 @@ function ResultCard({
           </div>
 
           <div
-            className="
-              bg-zinc-950
-              border
-              border-zinc-800
-              rounded-2xl
-              p-4
-            "
+           className="
+  bg-zinc-950
+  border
+  border-zinc-800
+  rounded-2xl
+  p-4
+  text-center
+"
           >
 
             <p className="text-zinc-500 text-xs mb-1">
